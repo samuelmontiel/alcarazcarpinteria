@@ -8,7 +8,7 @@ class Principal extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('');
-		$this->load->library('session','PHPMailer');
+		$this->load->library('session','My_PHPMailer');
 		$this->load->helper(array('download', 'file', 'url', 'html', 'form'));
 		$this->load->library('email','class.phpmailer.php','class.smtp.php');
 
@@ -34,7 +34,7 @@ class Principal extends CI_Controller {
 	}
 			public function enviar()
 		{
-			require 'PHPMailerAutoload.php';
+			
 
 			$name = $this->input->post('name');
 			$seconname = $this->input->post('seconname');
@@ -43,7 +43,7 @@ class Principal extends CI_Controller {
 			$mensaje = $this->input->post('mensaje');
 
 			//Este bloque es importante
-			$mail = new PHPMailer();
+			$mail = new My_PHPMailer();
 			$mail->IsSMTP();
 			$mail->SMTPAuth = true;
 			$mail->SMTPSecure = "ssl";
