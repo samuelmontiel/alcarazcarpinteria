@@ -8,9 +8,9 @@ class Principal extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('');
-		$this->load->library('session','My_PHPMailer');
-		$this->load->helper(array('download', 'file', 'url', 'html', 'form'));
-		$this->load->library('email','class.phpmailer.php','class.smtp.php');
+		$this->load->library('session','MY_Email');
+		$this->load->helper(array('download', 'file', 'url', 'html', 'form','MY_email_helper'));
+		$this->load->library('email');
 
 	}
 
@@ -35,24 +35,13 @@ class Principal extends CI_Controller {
 			public function enviar()
 		{
 			
-
+			
 			$name = $this->input->post('name');
 			$seconname = $this->input->post('seconname');
 			$email = $this->input->post('email');
 			$pregutnta = $this->input->post('pregutnta');
 			$mensaje = $this->input->post('mensaje');
 
-			//Este bloque es importante
-			$mail = new My_PHPMailer();
-			$mail->IsSMTP();
-			$mail->SMTPAuth = true;
-			$mail->SMTPSecure = "ssl";
-			$mail->Host = "smtp.gmail.com";
-			$mail->Port = 465;
-			
-			//Nuestra cuenta
-	$mail->Username ='smonti61@gmail.com';
-	$mail->Password = 'Revolucionrtm20'; //Su password
 			// // create email body and send it	
 			$to = 'smonti61@gmail.com'; // PUT YOUR EMAIL ADDRESS HERE
 			$email_subject = $name; // EDIT THE EMAIL SUBJECT LINE HERE
@@ -63,8 +52,8 @@ class Principal extends CI_Controller {
 			$headers .= "Correo: $email\n";	
 			mail($to,$email_subject,$email_body,$headers);
 //Para adjuntar archivo
-$mail->AddAttachment($archivo['tmp_name'], $archivo['name']);
-$mail->MsgHTML($mensaje);
+/*$mail->AddAttachment($archivo['tmp_name'], $archivo['name']);
+$mail->MsgHTML($mensaje);*/
 			$this->session->set_flashdata('enviado','Su mensaje ha Sido Enviado Correctamente');
 			redirect('principal/contacto');
 			
