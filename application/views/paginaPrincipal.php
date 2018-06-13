@@ -88,6 +88,7 @@
 
 						</li>
 						<li><a href="<?php echo site_url('Principal/contacto') ?>">Ubicación</a></li>
+						<li><a href="<?php echo site_url('Principal/vistaLogin') ?>">Administrador</a></li>
 					</ul>
 				</div>
 <!-- 				<div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">

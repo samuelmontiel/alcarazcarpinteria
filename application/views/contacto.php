@@ -88,6 +88,7 @@
 
 						</li>
 						<li><a href="<?php echo site_url('Principal/contacto') ?>">Ubicación</a></li>
+						<li><a href="<?php echo site_url('Principal/vistaLogin') ?>">Administrador</a></li>
 					</ul>
 				</div>
 <!-- 				<div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">
@@ -113,8 +114,9 @@
               {
             ?>
 
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success col-md-4 col-md-offset-4" align="center"role="alert">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <span class="sr-only">Error:</span>
                 Correo Enviado Correctamente
                 <?php

@@ -8,9 +8,11 @@ class Principal extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('');
-		$this->load->library('session','MY_Email');
-		$this->load->helper(array('download', 'file', 'url', 'html', 'form','MY_email_helper'));
-		$this->load->library('email');
+		$this->load->library('session','email_class');
+		$this->load->helper(array('download', 'file', 'url', 'html', 'form'));
+		
+		
+
 
 	}
 
@@ -32,9 +34,14 @@ class Principal extends CI_Controller {
 		$this->load->view('contacto');
 
 	}
+			public function vistaLogin()
+	{
+		$this->load->view('login');
+	}
 			public function enviar()
 		{
 			
+
 			
 			$name = $this->input->post('name');
 			$seconname = $this->input->post('seconname');
@@ -59,6 +66,7 @@ $mail->MsgHTML($mensaje);*/
 			
 		      
 		}
+
 	public function login(){
 					if($this->input->post()){
 						$Usuario= $this->eltorreon_model->login($this->input->post('Usuario'),($this->input->post('Password')));
