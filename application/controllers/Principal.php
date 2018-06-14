@@ -7,7 +7,7 @@ class Principal extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->database();
-		$this->load->model('');
+		$this->load->model('alcaraz_model');
 		$this->load->library('session','email_class');
 		$this->load->helper(array('download', 'file', 'url', 'html', 'form'));
 		
@@ -69,7 +69,7 @@ $mail->MsgHTML($mensaje);*/
 
 	public function login(){
 					if($this->input->post()){
-						$Usuario= $this->eltorreon_model->login($this->input->post('Usuario'),($this->input->post('Password')));
+						$Usuario= $this->alcaraz_model->login($this->input->post('Usuario'),($this->input->post('Password')));
 
 						if(!is_object($Usuario)){
 
@@ -77,29 +77,43 @@ $mail->MsgHTML($mensaje);*/
 							 $this->session->set_flashdata('user', $this->input->post('Usuario'));
 							 $this->session->set_flashdata('psw', $this->input->post('Password'));
 							
-							redirect('eltorreon/vistaLogin');
+							redirect('Principal/vistaLogin');
 						}else{
 							$date=date("Y-m-d H:i:s");
 
 							$this->session->set_userdata('Usuario',$Usuario->Nombre);
 							$fechaHora=$date;
-							$this->eltorreon_model->update($fechaHora,$Usuario->IdCliente);
+							$this->alcaraz_model->update($fechaHora,$Usuario->idUsuario);
 
-							redirect('eltorreon/templateAdmin');
+							redirect('Principal/templateAdmin');
 						}
 					}
 					else{
 							$this->session->set_flashdata('resp','El usuario y/o contraseña son incorrectos');
-							redirect('eltorreon/vistaLogin','refresh');
+							redirect('Principal/vistaLogin','refresh');
 					}
 		
 
 	}//FIN LOGIN
 	public function logout(){
 		$this->session->sess_destroy();
-		 redirect('eltorreon/index');
+		 redirect('Principal/index');
 	}
 	//FUNCIONES ADMINISTRADOR
+
+	public function templateAdmin()
+	{
+		if($this->session->userdata('Usuario')){
+
+		$this->load->view('admin/adminPrincipal');
+		// $this->load->view('admin/productos',$data);
+		}else
+		{
+			redirect('Principal/index');
+		}
+		
+
+	}
 	
 
 }

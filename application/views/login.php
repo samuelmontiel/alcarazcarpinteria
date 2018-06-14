@@ -33,21 +33,24 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="<?php echo site_url('Principal/login') ?>" method="post">
 					<span class="login100-form-title p-b-70">
-						Welcome
+						Bienvenido
 					</span>
 					<span class="login100-form-avatar">
 						<img src="images/user.png" alt="AVATAR">
 					</span>
-
+					    <?php $resp= $this->session->flashdata('resp'); ?>
+					    <?php if ($resp !="") { ?>
+					        <div class="alert alert-danger" role="alert"><?php echo $resp ?></div>
+					    <?php } ?>
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
-						<input class="input100" type="text" name="username">
-						<span class="focus-input100" data-placeholder="Username"></span>
+						<input class="input100" type="text" id="Usuario" name="Usuario" required >
+						<span class="focus-input100" data-placeholder="Usuario"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" id="Password" name="Password" required >
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
